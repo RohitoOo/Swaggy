@@ -2,43 +2,21 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-let orderSchema = new Schema ({
-    customerId: {
-        type: String,
-        required: true
-    },
-    driverId: {
-        type: String,
-        required: true
-    },
-    orderItems: {
-        type: Array,
-        required: true,
-        default: []
-    },
-    selectedRestaurant: {
-        type: String,
-        required: true
-    },
-    createdAt: {
-        type: Date,
-        default: new Date,
-        required: true
-    },
-    updatedAt: {
-        type: Date,
-        default: new Date
-
-    },
-    deletedAt: {
-        type: Date,
-    },
-    completed: {
-        type: Boolean,
-    },
-    specialInstructions: {
-        type: String
-    }
+const OrderSchema = new Schema({
+    Customer_ID: {type: Schema.Types.ObjectId, ref: 'Customer'},
+    Driver_ID: {type:Schema.Types.ObjectId, ref: 'Driver'},
+    Restaurant_ID: {type: Schema.Types.ObjectId, ref: 'Restaurant'},
+    Order_Items: {type: [Object]},
+    Order_Amount: {type: Number},
+    Delivery_Charges: {type: Number},
+    Discount: {type: Number},
+    Final_Amount: {type: Number},
+    Payment_Status: {type: String},
+    Delivery_Address_ID: {type: Schema.Types.ObjectId, ref: 'Customer_Address'},
+    Order_Status_ID: {type: Schema.Types.ObjectId, ref: 'Order_Status'},
+    Payment_ID: {type: Schema.Types.ObjectId, ref: 'Payment'},
+    Completed: {type: Boolean, default: false}
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+
+module.exports = mongoose.model('Order', OrderSchema);

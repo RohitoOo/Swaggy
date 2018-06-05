@@ -5,13 +5,12 @@ const driverRoutes = require('./routes/driverRouters');
 
 
 const app = express();
-const PORT = 3132;
+const PORT = 3133;
+
+app.use(express.static('public'));
 
 //Middleware
-
 app.use(bodyParser.json());
-const customerRoutes = require('./routes/customerRoutes');
-app.use("/customer", customerRoutes);
 
 app.use(bodyParser.urlencoded({extended:true}));
 

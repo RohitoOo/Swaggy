@@ -3,65 +3,41 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const driverSchema = new Schema({
-    first_name: {
+
+    Driver_Name:{
         type: String,
         required: true,
-        match: /^[a-z ,.'-]{1,25}$/i
+        match: /^[a-z ,.'-]{1,70}$/i
     },
-    last_name: {
-        type: String,
-        required: true,
-        match: /^[a-z ,.'-]{1,25}$/i
-    },
-    username: {
-        type: String,
-        required: true,
-        unique:true,
-        match: /^[a-z0-9._-]{4,25}$/i
-    },
-    email:{
+    Driver_Email:{
         type:String,
         required: true,
         unique:true,
         match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     },
-    mobile_number: {
+    Driver_Phone: {
         type: String,
         required: true,
         unique: true,
-        match: /^[0-9]{10}$/
+        match: /^[\-+0-9]{8,13}$/
     },
-    password: {
+    Driver_Password: {
         type: String,
         required:true
     },
-    availability_status: {
-        type: String    // not boolean because 3 possibilities "online & available", "online & not available", "offline"
+    Driver_Image: {
+        type: String
     },
-    current_location: {
-        type: [Number]  // array of two numbers
+    Driver_Token: {
+        type: String
     },
-    driver_license: {
-        type: String // String stores the path to the image.
+    Driver_Active: {
+        type: Boolean
     },
-    current_order_id:{
-        type: String  //To which address the item has to be delivered.
-    },
-    driver_image: {
-        type: String // String stores the path to the image.
-    },
-    earnings: {
-        type: Number,
-    },
-    ratings: {
-        type: Number,
-    },
-    deliveredOnTime: {
-        type: Number
-    },
-    cancellationRate: {
-        type: Number
+    Driver_Status: {
+        type: String   // 'online and available', 'online and not available', 'offline'
     }
+
 });
 
 module.exports = mongoose.model('Driver', driverSchema);
